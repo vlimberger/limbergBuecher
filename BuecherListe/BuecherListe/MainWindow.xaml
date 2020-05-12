@@ -41,8 +41,8 @@
         <TextBox x:Name="katTb" HorizontalAlignment="Left" Height="23" Margin="229,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="2"/>
         <ListBox x:Name="lb" HorizontalAlignment="Left" Height="385" Margin="495,44,0,0" VerticalAlignment="Top" Width="390" Grid.Column="2"/>
         <Button x:Name="insBtn" Grid.ColumnSpan="3" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,181,0,0" Click="insBtn_Click"/>
-        <Button x:Name="upBtn" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,181,0,0" Grid.Column="2"/>
-        <Button x:Name="delBtn" Content="delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="203,181,0,0" Grid.Column="2"/>
+        <Button x:Name="upBtn" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,181,0,0" Grid.Column="2" Click="upBtn_Click"/>
+        <Button x:Name="delBtn" Content="delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="203,181,0,0" Grid.Column="2" Click="delBtn_Click"/>
         <Button x:Name="selBtn" Content="Select" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="326,181,0,0" Grid.Column="2"/>
 
     </Grid>

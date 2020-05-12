@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,76 @@ namespace BuecherListe
 
             //"INSERT INTO Buecher ([Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
 
+
+        }
+        private void DisplayData()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = connString;
+           
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT * from [buecherliste]";
+                cmd.Connection = con;
+                SqlDataAdapter daadapt = new SqlDataAdapter(cmd);
+                DataTable data = new DataTable();
+                daadapt.Fill(data);
+                buecherDataGrid.ItemsSource = data.DefaultView;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fehler");
+            }
+        }
+
+        private void upBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connString);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+
+                
+                cmd.CommandText = "UPDATE [Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
+
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                DisplayData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error during update");
+            }
+
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connString);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+
+                //Hier wird die Zeile von einer Bestimmten ID gelöscht
+                cmd.CommandText = "DELETE FROM Buecher WHERE Id=" + IDtb.Text;
+
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                DisplayData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error during delete");
+            }
 
         }
     }
