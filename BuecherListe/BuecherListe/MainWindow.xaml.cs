@@ -153,7 +153,7 @@ namespace BuecherListe
                 Vetb.Text = item.Row.ItemArray[5].ToString();
 
             }
-            DisplayData();
+            DisplayData(); 
 
         }
     }
