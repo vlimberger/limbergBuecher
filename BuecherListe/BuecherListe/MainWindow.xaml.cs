@@ -47,40 +47,7 @@ namespace BuecherListe
             buecherViewSource.View.MoveCurrentToFirst();
         }
 
-        private void insBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int id = Convert.ToInt32(IDtb.Text);
-                string titel = Titb.Text;
-                string author = AUTtb.Text;
-                string kurbeschreibung = kuzTb.Text;
-                string kategorie = katTb.Text;
-                string verlag = Vetb.Text;
-
-
-                Buecher b = new Buecher (id, titel, author,kurbeschreibung, kategorie, verlag );
-
-                
-            }
-
-            catch
-            {
-                IDtb.Text = "";
-                Titb.Text = "";
-                AUTtb.Text = "";
-                kuzTb.Text = "";
-                katTb.Text = "";
-                Vetb.Text = "";
-
-                MessageBox.Show("Es müssen Werte eingegeben werden");
-            }
-
-
-            //"INSERT INTO Buecher ([Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
-
-
-        }
+   
         private void DisplayData()
         {
             SqlConnection con = new SqlConnection(); 
@@ -123,7 +90,7 @@ namespace BuecherListe
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error during update");
+                MessageBox.Show(ex.Message, "Fehler beim Update");
             }
 
         }
@@ -151,5 +118,44 @@ namespace BuecherListe
             }
 
         }
+
+        private void insBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connString);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "INSERT INTO Buecher [Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
+
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                DisplayData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Error during insert");
+            }
+        }
+
+        private void buecherDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = buecherDataGrid.SelectedItem as DataRowView;
+            if (item != null)
+            {
+                IDtb.Text = item.Row.ItemArray[0].ToString();
+                Titb.Text = item.Row.ItemArray[1].ToString();
+                AUTtb.Text = item.Row.ItemArray[2].ToString();
+                kuzTb.Text = item.Row.ItemArray[3].ToString();
+                katTb.Text = item.Row.ItemArray[4].ToString();
+                Vetb.Text = item.Row.ItemArray[5].ToString();
+
+            }
+            DisplayData();
+
+        }
     }
 }
+

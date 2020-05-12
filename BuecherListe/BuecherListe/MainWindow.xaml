@@ -17,7 +17,7 @@
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="936*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="buecherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource buecherViewSource}}" Margin="34,220,488,46" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
+        <DataGrid x:Name="buecherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource buecherViewSource}}" Margin="34,220,488,46" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" SelectionChanged="buecherDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn1" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="titelColumn1" Binding="{Binding Titel}" Header="Titel" Width="SizeToHeader"/>
