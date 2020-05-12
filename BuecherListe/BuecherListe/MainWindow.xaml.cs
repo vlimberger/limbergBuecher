@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +23,8 @@ namespace BuecherListe
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Buecher> buecherliste;
+        private readonly string connString = ConfigurationManager.ConnectionStrings
         public MainWindow()
         {
             InitializeComponent();
@@ -39,6 +44,27 @@ namespace BuecherListe
             buecherDataSetBuecherTableAdapter.Fill(buecherDataSet.Buecher);
             System.Windows.Data.CollectionViewSource buecherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("buecherViewSource")));
             buecherViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void insBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connString);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "INSERT INTO Buecher ([Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
+
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                DisplayData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Error during insert");
+            }
         }
     }
 }

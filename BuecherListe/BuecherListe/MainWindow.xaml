@@ -34,13 +34,13 @@
         <Label Content="Author" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
         <TextBox x:Name="AUTtb" HorizontalAlignment="Left" Height="23" Margin="6.241,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
         <Label Content="Kurzbeschreibung" HorizontalAlignment="Left" Margin="157.241,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.096,1.009" Grid.Column="2"/>
-        <Label Content="Kategorie" HorizontalAlignment="Left" Margin="168.241,78,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-        <Label Content="Verlag" HorizontalAlignment="Left" Margin="168.241,137,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBox x:Name="kuzTb" HorizontalAlignment="Left" Height="23" Margin="267.241,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
-        <TextBox x:Name="Vetb" HorizontalAlignment="Left" Height="23" Margin="229.241,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
-        <TextBox x:Name="katTb" HorizontalAlignment="Left" Height="23" Margin="244.241,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <Label Content="Kategorie" HorizontalAlignment="Left" Margin="157,78,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <Label Content="Verlag" HorizontalAlignment="Left" Margin="157,137,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <TextBox x:Name="kuzTb" HorizontalAlignment="Left" Height="23" Margin="267,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Grid.Column="2"/>
+        <TextBox x:Name="Vetb" HorizontalAlignment="Left" Height="23" Margin="213,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Grid.Column="2"/>
+        <TextBox x:Name="katTb" HorizontalAlignment="Left" Height="23" Margin="229,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="2"/>
         <ListBox x:Name="lb" HorizontalAlignment="Left" Height="385" Margin="495,44,0,0" VerticalAlignment="Top" Width="390" Grid.Column="2"/>
-        <Button x:Name="insBtn" Grid.ColumnSpan="3" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,181,0,0"/>
+        <Button x:Name="insBtn" Grid.ColumnSpan="3" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,181,0,0" Click="insBtn_Click"/>
         <Button x:Name="upBtn" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,181,0,0" Grid.Column="2"/>
         <Button x:Name="delBtn" Content="delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="203,181,0,0" Grid.Column="2"/>
         <Button x:Name="selBtn" Content="Select" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="326,181,0,0" Grid.Column="2"/>
