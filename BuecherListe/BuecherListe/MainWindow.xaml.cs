@@ -34,6 +34,11 @@ namespace BuecherListe
             buecherDataSetTablTableAdapter.Fill(buecherDataSet.Tabl);
             System.Windows.Data.CollectionViewSource tablViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("tablViewSource")));
             tablViewSource.View.MoveCurrentToFirst();
+            // Lädt Daten in Tabelle "Buecher". Sie können diesen Code nach Bedarf ändern.
+            BuecherListe.BuecherDataSetTableAdapters.BuecherTableAdapter buecherDataSetBuecherTableAdapter = new BuecherListe.BuecherDataSetTableAdapters.BuecherTableAdapter();
+            buecherDataSetBuecherTableAdapter.Fill(buecherDataSet.Buecher);
+            System.Windows.Data.CollectionViewSource buecherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("buecherViewSource")));
+            buecherViewSource.View.MoveCurrentToFirst();
         }
     }
 }

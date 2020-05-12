@@ -5,22 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BuecherListe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="BuecherListe" Height="600" Width="1000" Loaded="Window_Loaded">
     <Window.Resources>
         <local:BuecherDataSet x:Key="buecherDataSet"/>
         <CollectionViewSource x:Key="tablViewSource" Source="{Binding Tabl, Source={StaticResource buecherDataSet}}"/>
+        <CollectionViewSource x:Key="buecherViewSource" Source="{Binding Buecher, Source={StaticResource buecherDataSet}}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource tablViewSource}">
-        <DataGrid x:Name="tablDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="133,125,259,94" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="936*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="buecherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource buecherViewSource}}" Margin="34,220,488,46" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="titelColumn" Binding="{Binding Titel}" Header="Titel" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="authorColumn" Binding="{Binding Author}" Header="Author" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="kurzbeschreibungColumn" Binding="{Binding Kurzbeschreibung}" Header="Kurzbeschreibung" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="kategorieColumn" Binding="{Binding Kategorie}" Header="Kategorie" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="verlagColumn" Binding="{Binding Verlag}" Header="Verlag" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idColumn1" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="titelColumn1" Binding="{Binding Titel}" Header="Titel" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="authorColumn1" Binding="{Binding Author}" Header="Author" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kurzbeschreibungColumn1" Binding="{Binding Kurzbeschreibung}" Header="Kurzbeschreibung" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kategorieColumn1" Binding="{Binding Kategorie}" Header="Kategorie" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="verlagColumn1" Binding="{Binding Verlag}" Header="Verlag" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.624,1.049"/>
+        <TextBox x:Name="IDtb" HorizontalAlignment="Left" Height="23" Margin="2.241,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <Label Content="Titel:" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Titb" HorizontalAlignment="Left" Height="23" Margin="2.241,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <Label Content="Author" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="AUTtb" HorizontalAlignment="Left" Height="23" Margin="6.241,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <Label Content="Kurzbeschreibung" HorizontalAlignment="Left" Margin="157.241,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.096,1.009" Grid.Column="2"/>
+        <Label Content="Kategorie" HorizontalAlignment="Left" Margin="168.241,78,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <Label Content="Verlag" HorizontalAlignment="Left" Margin="168.241,137,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+        <TextBox x:Name="kuzTb" HorizontalAlignment="Left" Height="23" Margin="267.241,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <TextBox x:Name="Vetb" HorizontalAlignment="Left" Height="23" Margin="229.241,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <TextBox x:Name="katTb" HorizontalAlignment="Left" Height="23" Margin="244.241,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+        <ListBox x:Name="lb" HorizontalAlignment="Left" Height="385" Margin="495,44,0,0" VerticalAlignment="Top" Width="390" Grid.Column="2"/>
+        <Button x:Name="insBtn" Grid.ColumnSpan="3" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,181,0,0"/>
+        <Button x:Name="upBtn" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,181,0,0" Grid.Column="2"/>
+        <Button x:Name="delBtn" Content="delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="203,181,0,0" Grid.Column="2"/>
+        <Button x:Name="selBtn" Content="Select" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="326,181,0,0" Grid.Column="2"/>
 
     </Grid>
 </Window>
