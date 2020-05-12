@@ -83,7 +83,7 @@ namespace BuecherListe
         }
         private void DisplayData()
         {
-            SqlConnection con = new SqlConnection();
+            SqlConnection con = new SqlConnection(); 
             con.ConnectionString = connString;
            
             try
