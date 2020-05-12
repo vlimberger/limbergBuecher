@@ -24,7 +24,7 @@ namespace BuecherListe
     public partial class MainWindow : Window
     {
         ObservableCollection<Buecher> buecherliste;
-        private readonly string connString = ConfigurationManager.ConnectionStrings
+        private readonly string connString = ConfigurationManager.ConnectionStrings["BuecherListe.Properties.Settings.BuecherConnectionString"].ConnectionString;
         public MainWindow()
         {
             InitializeComponent();
@@ -48,23 +48,37 @@ namespace BuecherListe
 
         private void insBtn_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection con = new SqlConnection(connString);
             try
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "INSERT INTO Buecher ([Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
+                int id = Convert.ToInt32(IDtb.Text);
+                string titel = Titb.Text;
+                string author = AUTtb.Text;
+                string kurbeschreibung = kuzTb.Text;
+                string kategorie = katTb.Text;
+                string verlag = Vetb.Text;
 
-                cmd.Connection = con;
-                cmd.ExecuteNonQuery();
 
-                con.Close();
-                DisplayData();
+                Buecher b = new Buecher (id, titel, author,kurbeschreibung, kategorie, verlag );
+
+                
             }
-            catch (Exception ex)
+
+            catch
             {
-                MessageBox.Show(ex.Message, " Error during insert");
+                IDtb.Text = "";
+                Titb.Text = "";
+                AUTtb.Text = "";
+                kuzTb.Text = "";
+                katTb.Text = "";
+                Vetb.Text = "";
+
+                MessageBox.Show("Es müssen Werte eingegeben werden");
             }
+
+
+            //"INSERT INTO Buecher ([Id],[Titel],[Author],[Kurzbeschreibung],[Kategorie],[Verlag])" + "VALUES('" + IDtb.Text + "','" + Titb.Text + "','" + AUTtb.Text + "','" + kuzTb.Text + "','" + katTb.Text + "','" + Vetb.Text + "')";
+
+
         }
     }
 }
