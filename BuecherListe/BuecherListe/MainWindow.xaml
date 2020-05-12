@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BuecherListe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:BuecherDataSet x:Key="buecherDataSet"/>
+        <CollectionViewSource x:Key="tablViewSource" Source="{Binding Tabl, Source={StaticResource buecherDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource tablViewSource}">
+        <DataGrid x:Name="tablDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="133,125,259,94" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="titelColumn" Binding="{Binding Titel}" Header="Titel" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="authorColumn" Binding="{Binding Author}" Header="Author" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kurzbeschreibungColumn" Binding="{Binding Kurzbeschreibung}" Header="Kurzbeschreibung" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kategorieColumn" Binding="{Binding Kategorie}" Header="Kategorie" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="verlagColumn" Binding="{Binding Verlag}" Header="Verlag" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

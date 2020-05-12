@@ -24,5 +24,16 @@ namespace BuecherListe
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            BuecherListe.BuecherDataSet buecherDataSet = ((BuecherListe.BuecherDataSet)(this.FindResource("buecherDataSet")));
+            // Lädt Daten in Tabelle "Tabl". Sie können diesen Code nach Bedarf ändern.
+            BuecherListe.BuecherDataSetTableAdapters.TablTableAdapter buecherDataSetTablTableAdapter = new BuecherListe.BuecherDataSetTableAdapters.TablTableAdapter();
+            buecherDataSetTablTableAdapter.Fill(buecherDataSet.Tabl);
+            System.Windows.Data.CollectionViewSource tablViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("tablViewSource")));
+            tablViewSource.View.MoveCurrentToFirst();
+        }
     }
 }
