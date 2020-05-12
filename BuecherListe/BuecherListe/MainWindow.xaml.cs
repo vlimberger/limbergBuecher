@@ -121,7 +121,7 @@ namespace BuecherListe
 
         private void insBtn_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection con = new SqlConnection(connString);
+            SqlConnection con = new SqlConnection(connString); 
             try
             {
                 con.Open();
